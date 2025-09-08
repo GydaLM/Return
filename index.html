@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Return</title>
+</head>
+<body>
+    <div id="mainDiv"></div>
+    <button onclick="changeDivContent('lightcoral', 'Hallo verden!', 35, 'groove', 5, 'orange')">Test 1</button>
+    <button onclick="changeDivContent('lightblue', 'Hei på deg!', 25, 'dotted', 3, 'blue')">Test 2</button>
+    <button onclick="changeDivContent('lightgreen', 'Get Academy', 15, 'solid', 1, 'green')">Test 3</button>
+
+    <script>
+        //funksjon som henter mainDiv sin innerHTML, legger teksten fra parameteret inn i mainDiv
+        //sin innerHTML og endrer stilen ved hjelp av andre funksjoner
+        function changeDivContent(color, text, fontSize, border, borderSize, textColor){
+            document.getElementById('mainDiv').innerHTML = /*HTML*/ `
+            <div ${createStyle(color, fontSize, border, borderSize, textColor)}>${text}</div>
+            `
+        }
+        //funksjon som setter opp style ved hjelp av funksjoner som endrer verdien til stilen og
+        //returnerer dette tilbake til changeDivContent der det plasseres i diven
+        function createStyle(color, fontSize, border, borderSize, textColor){
+            return `style="${changeBackground(color)} ${changeFontSize(fontSize)} 
+            ${changeBorderStyle(border, borderSize)} ${changeTextColor(textColor)};"`
+        }
+        //funksjon som henter fargen fra parameter sendt med funksjonen på button og returnerer
+        //den tilbake til createStyle funksjonen der den endrer stilen
+        function changeBackground(color){
+            return `background-color:${color};`
+        }
+        //funksjon som henter størrelse fra parameter sendt med funksjonen på button og returnerer
+        //den tilbake til createStyle funksjonen der den endrer stilen
+        function changeFontSize(fontSize){
+            return `font-size:${fontSize}px;`
+        }
+        //funksjon som henter border stil fra parameter sendt med funksjonen på button og returnerer
+        //den tilbake til createStyle funksjonen der den endrer stilen, sender med både stil
+        //på border i form av tekst og størrelse på border i form av tall
+        function changeBorderStyle(border, borderSize){
+            return `border:${border}; border-width:${borderSize}px;`
+        }
+        //funksjon som henter farge i form av tekst fra parameter sendt med funksjonen på button
+        //og returnerer den tilbake til createStyle funksjonen der den endrer stilen
+        function changeTextColor(textColor){
+            return `color:${textColor};`
+        }
+    </script>
+</body>
+</html>
